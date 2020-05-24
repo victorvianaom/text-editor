@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>Text Editor</title>
+    <style>
+        #div-text-editor {
+            margin: 0 auto;
+            width: 750px;
+            height: 300px;
+        }
+        #div-buttons {
+            border-bottom: none;
+            padding: 10px;
+            background-color: royalblue;
+            color: white;
+            border-radius: 8px 8px 0px 0px;
+        }
+        #div-text-area {
+            border: 2px solid royalblue;
+            height: 100%;
+            width: 746px;
+        }
+        #iframe-text {
+            height: 100%;
+            width: 100%;
+        }
+        #div-buttons > button {
+            color: white;
+            border: none;
+            outline: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+        #div-buttons > button:hover {
+            background-color: rgba(0, 0, 0, 0.4);
+            transition: all 0.3s linear 0s;
+        }
+    </style>
+</head>
+<body>
+    <div id="div-text-editor">
+        <div id="div-buttons">
+            <button id="btn-bold" title="Negrito"><b>N</b></button>
+            <button id="btn-italic" title="Italico"><em>I</em></button>
+            <button id="btn-sup" title="Acima">X<sup>2</sup></button>
+            <button id="btn-sub" title="Abaixo">X<sub>2</sub></button>
+            <button id="btn-strike" title="Riscar"><s>abc</s></button>
+        </div>
+        <div id="div-text-area">
+            <iframe id="iframe-text" name="iframe-text" frameborder="0"></iframe>
+        </div>
+    </div>
+</body>
+</html>
