@@ -65,6 +65,37 @@
             btnStrike.addEventListener('click', function() {
                 editor.execCommand("Strikethrough", false, null)
             }, false)
+            btnOrderedList.addEventListener('click', function() {
+                editor.execCommand("InsertOrderedList", false, "newOL" + Math.round(Math.random() * 1000))
+            }, false)
+            btnUnorderedList.addEventListener('click', function() {
+                editor.execCommand("InsertUnorderedList", false, "newUL" + Math.round(Math.random() * 1000))
+            }, false)
+            inputFontColor.addEventListener('change', function(event) {
+                editor.execCommand("ForeColor", false, event.target.value)
+            }, false)
+            inputHighlight.addEventListener('change', function(event) {
+                editor.execCommand("BackColor", false, event.target.value)
+            }, false)
+            selectFontType.addEventListener('change', function(event) {
+                editor.execCommand("FontName", false, event.target.value)
+            }, false)
+            selectFontSize.addEventListener('change', function(event) {
+                editor.execCommand("FontSize", false, event.target.value)
+            }, false)
+            btnLink.addEventListener('click', function() {
+                var url = prompt('Entre com a URL: ', 'http://');
+                editor.execCommand("CreateLink", false, url)
+            }, false)
+            btnUnlink.addEventListener('click', function() {
+                editor.execCommand("UnLink", false, null)
+            }, false)
+            btnUndo.addEventListener('click', function() {
+                editor.execCommand("undo", false, null)
+            }, false)
+            btnRedo.addEventListener('click', function() {
+                editor.execCommand("redo", false, null)
+            }, false)
 
         }, false)
     </script>
@@ -77,13 +108,13 @@
             <button id="btnSup" title="Acima">X<sup>2</sup></button>
             <button id="btnSub" title="Abaixo">X<sub>2</sub></button>
             <button id="btnStrike" title="Riscar"><s>abc</s></button>
-            <button id="btnOrdered-list" title="Lista Numerada">(i)</button>
-            <button id="btnUnordered-list" title="Lista nao numerada">&bull;</button>
+            <button id="btnOrderedList" title="Lista Numerada">(i)</button>
+            <button id="btnUnorderedList" title="Lista nao numerada">&bull;</button>
             
             <input type="color" id="inputFontColor" title="Trocar cor do botao" />
             <input type="color" id="inputHighlight" title="Destacar texto" />
 
-            <select id="select-font-type">
+            <select id="selectFontType">
                 <option value="Arial">Arial</option>
                 <option value="Times New Roman">Times New Roman</option>
                 <option value="Consolas">Consolas</option>
@@ -96,7 +127,7 @@
 
             <select id="selectFontSize">
                 <script>
-                    for (var i = 1; i <= 10; i++) {
+                    for (var i = 1; i <= 7; i++) {
                         document.write('<option value="'+ i +'">'+ i +'</option>')
                     }
                 </script>
@@ -114,7 +145,7 @@
     </div>
 
     <script>
-        var fontOptions = document.querySelectorAll('#select-font-type > option')
+        var fontOptions = document.querySelectorAll('#selectFontType > option')
         for (const font of fontOptions) {
             font.style.fontFamily = font.value
         }
