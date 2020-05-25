@@ -21,7 +21,7 @@
             height: 100%;
             width: 746px;
         }
-        #iframe-text {
+        #iframeText {
             height: 100%;
             width: 100%;
         }
@@ -36,20 +36,88 @@
             background-color: rgba(0, 0, 0, 0.4);
             transition: all 0.3s linear 0s;
         }
+        input[type="color"] {
+            border: none;
+            outline: none;
+            background-color: transparent;
+        }
+        input[type="color"]:hover {
+            cursor: pointer;
+        }
     </style>
+    <script>
+        window.addEventListener('load', function() {
+            var editor = iframeText.document //the iframe loads its own document
+            editor.designMode = "on"
+
+            btnBold.addEventListener('click', function() {
+                editor.execCommand("Bold", false, null)
+            }, false)
+            btnItalic.addEventListener('click', function() {
+                editor.execCommand("Italic", false, null)
+            }, false)
+            btnSup.addEventListener('click', function() {
+                editor.execCommand("Superscript", false, null)
+            }, false)
+            btnSub.addEventListener('click', function() {
+                editor.execCommand("Subscript", false, null)
+            }, false)
+            btnStrike.addEventListener('click', function() {
+                editor.execCommand("Strikethrough", false, null)
+            }, false)
+
+        }, false)
+    </script>
 </head>
 <body>
     <div id="div-text-editor">
         <div id="div-buttons">
-            <button id="btn-bold" title="Negrito"><b>N</b></button>
-            <button id="btn-italic" title="Italico"><em>I</em></button>
-            <button id="btn-sup" title="Acima">X<sup>2</sup></button>
-            <button id="btn-sub" title="Abaixo">X<sub>2</sub></button>
-            <button id="btn-strike" title="Riscar"><s>abc</s></button>
+            <button id="btnBold" title="Negrito"><b>N</b></button>
+            <button id="btnItalic" title="Italico"><em>I</em></button>
+            <button id="btnSup" title="Acima">X<sup>2</sup></button>
+            <button id="btnSub" title="Abaixo">X<sub>2</sub></button>
+            <button id="btnStrike" title="Riscar"><s>abc</s></button>
+            <button id="btnOrdered-list" title="Lista Numerada">(i)</button>
+            <button id="btnUnordered-list" title="Lista nao numerada">&bull;</button>
+            
+            <input type="color" id="inputFontColor" title="Trocar cor do botao" />
+            <input type="color" id="inputHighlight" title="Destacar texto" />
+
+            <select id="select-font-type">
+                <option value="Arial">Arial</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Consolas">Consolas</option>
+                <option value="Tahoma">Tahoma</option>
+                <option value="monospace">Monospace</option>
+                <option value="Cursive">Cursive</option>
+                <option value="sans-serif">Sans-Serif</option>
+                <option value="Calibri">Calibri</option>
+            </select>
+
+            <select id="selectFontSize">
+                <script>
+                    for (var i = 1; i <= 10; i++) {
+                        document.write('<option value="'+ i +'">'+ i +'</option>')
+                    }
+                </script>
+            </select>
+
+            <button id="btnLink" title="Criar Link">Link</button>
+            <button id="btnUnlink" title="Retirar Link">Unlink</button>
+            <button id="btnUndo" title="Desfazer">&larr;</button>
+            <button id="btnRedo" title="Refazer">&rarr;</button>
         </div>
+
         <div id="div-text-area">
-            <iframe id="iframe-text" name="iframe-text" frameborder="0"></iframe>
+            <iframe id="iframeText" name="iframeText" frameborder="0"></iframe>
         </div>
     </div>
+
+    <script>
+        var fontOptions = document.querySelectorAll('#select-font-type > option')
+        for (const font of fontOptions) {
+            font.style.fontFamily = font.value
+        }
+    </script>
 </body>
 </html>
